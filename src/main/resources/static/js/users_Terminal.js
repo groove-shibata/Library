@@ -1,0 +1,13 @@
+$(function(){
+	//画面遷移系
+	$('.register').on('click',()=>{
+		gotoward('users');
+	});
+	$('.edit').on('click',()=>{
+		setAfterLoginDestination('users')
+		gotoward('login');
+	});
+	$('img').on('click',()=>{
+		gotoward('TotalTerminal');
+	});
+});

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="shortcut icon" th:href="@{/images/logoM.png}" type="image/x-icon">
+	<link rel="stylesheet" th:href="@{/css/return-extension.css}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<!--ここから共通部分のjsファイル-->
+	<script th:src="@{/js/common.js}"></script>
+	<script th:src="@{/js/promisedAjax.js}"></script>
+	<script th:src="@{/js/regExs.js}"></script>
+	<script th:src="@{/js/errStrings.js}"></script>
+	
+	<!--ここから返却・延長のjsファイル-->
+	<script th:src="@{/js/return-extension.js}"></script>
+	
+	<title>LibSys</title>
+</head>
+
+<body>
+	<header>
+		<img class="headerLogo" th:src="@{/images/図1.svg}" alt="logo">
+		<div class="menu">
+			<a class="search-link">書籍検索</a>
+			<a class="users-link">利用者メニュー</a>
+			<a class="rent-link">貸出・返却</a>
+		</div>
+	</header>
+	<main style="overflow: hidden;">
+		<div class="main-all" style="box-sizing: border-box;">
+			<div class="main-sc">
+				<div class="title">
+					<h1>貸出・返却</h1>
+				</div>
+				<form action="###" method="post" name="form">
+					<div class="main1">
+						<div class="rentingBooksTitle">貸出中書籍</div>
+						<div class="userStatus">
+							<div class="userNumContainer">
+								<div class="userNumTitle">
+									図書カード番号：
+								</div>
+								<div class="contentValue" id="userNumHolder" name="userNumHolder">
+								</div>
+							</div>
+							<div class="userNameContainer">
+								<div class="userNameTitle">
+									氏名：
+								</div>
+								<div class="contentValue" id="userName" name="userName">
+								</div>
+							</div>
+							<div class="userPenaltyContainer">
+								<div class="userPenaltyTitle">
+									ペナルティ日数：
+								</div>
+								<div class="contentValue" id="penaDay" name="penaDay">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="rentingBooksContainer">
+						<div class="rentingBooks">
+							<table style="table-layout: fixed">
+								<tr>
+									<th class="bookName">書籍名</th>
+									<th class="bookNum">書籍番号</th>
+									<th class="bookBranchNum">枝番</th>
+									<th class="returnDate">貸出期限</th>
+									<th class="extensionCount">延長</th>
+									<th class="isArrears">延滞</th>
+									<th class="select">選択</th>
+								</tr>
+							</table>
+						</div>
+						<div class="caution duringPenaltyErr"></div>
+						<div class="caution extensionCountErr"></div>
+					</div>
+					<div class="buttons">
+						<button id="newRent">新規貸出</button>
+						<div class="ret-ext-bacButtons">
+							<button type="button" class="returnButton" id="return">返却</button>
+							<button type="button" class="extensionButton" id="extension">延長</button>
+							<button type="button" class="backButton" id="backButton" th:onclick="|gotoward('__${previousPageUrl}__')|">戻る</button>
+						</div>
+					</div>
+					<input type="hidden" id="userNum" name="userNum" th:value="${userNum}">
+					<input type="hidden" id="destination" name="destination">
+					<input type="hidden" id="thisPageUrl" name="previousPageUrl" value="login">
+					<input type="hidden" id="afterLoginDestination" th:value="${afterLoginDestination}"><input
+						type="hidden" id="afterLoginDestination" name="afterLoginDestination"
+						th:value="${afterLoginDestination}">
+				</form>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>

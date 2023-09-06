@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/users_Register.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    
+    <!--yubinbango.jsは郵便番号の自動入力に利用しています。-->
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+    
+	<!--ここから共通部分のjsファイル-->
+	<script th:src="@{/js/common.js}"></script>
+	<script th:src="@{/js/promisedAjax.js}"></script>
+	<script th:src="@{/js/regExs.js}"></script>
+	<script th:src="@{/js/errStrings.js}"></script>
+	
+	<!--ここからusers部分のjsファイル-->
+	<!--usersCommon.jsは利用者情報登録と利用者情報変更・削除の共通ファイルです。-->
+	<script th:src="@{/js/usersCommon.js}"></script>
+	<!--usersProcessは前画面から読み込むjsの指定を受けて決定されます。
+	当jsファイルによって登録と変更・削除で処理を変更します。-->
+	<script th:src="@{/js/__${usersProcess}__.js}"></script>
+	
+    <title>LibSys</title>
+</head>
+
+<body>
+    <header>
+        <img class="headerLogo" th:src="@{/images/図1.svg}" alt="logo">
+        <div class="menu">
+            <a class="search-link">書籍検索</a>
+            <a class="users-link">利用者メニュー</a>
+            <a class="rent-link">貸出・返却</a>
+        </div>
+    </header>
+    <main style="overflow: hidden;">
+        <div class="main-all" style="box-sizing: border-box;">
+            <div class="main-sc">
+                <div class="title">
+                    <h1>利用者情報<span class="subtitle">登録</span></h1>
+                </div>
+                <form action="###" method="post" name="form" class="h-adr">
+                    <ul class="formList">
+                        <li class="nameContent">
+                            <div class="input-area">
+                                <span>お名前</span>
+                                <div class="zone">
+                                    <input type="text" class="name" id="userName" name="userName" placeholder="図書館太郎" maxlength="64">
+                                    <div class="caution" id="nameCaution">
+                                        <div class="nameRgxError"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="telNumContent">
+                            <div class="input-area">
+                                <span>電話番号</span>
+                                <div class="zone">
+                                    <input type="text" class="telNum" id="telNum" name="telNum" placeholder="09012345678" maxlength="11">
+                                    <div class="notice">ハイフンは抜いて入力してください。</div>
+                                    <div class="caution" id="telNumCaution">
+                                        <div class="telNumRgxError"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="address">
+                            <div class="addressTitle">住所</div>
+                            <ul>
+                                <li class="postCode">
+                                    <div class="input-area">
+                                        <span>郵便番号</span>
+                                        <div class="zone" style="display: inline-block;width: 70%;min-width: 333px;">
+                                            <input type="text" class="postCode p-postal-code" id="postCode" name="postCode" placeholder="1231234" maxlength="7">
+<!--                                            <button type="button" class="insertAdd1">住所入力</button>-->
+                                            <div class="caution" id="postCodeCaution">
+                                                <div class="postCodeLengthError postCodeRgxError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="address1">
+                                    <div class="input-area">
+                                        <span>住所1</span>
+                                        <div class="zone">
+                                            <input type="text" class="add1 p-region p-locality p-street-address p-extended-address" id="add1" name="add1" placeholder="東京都世田谷区給田" style="pointer-events: none;opacity: 0.8;" readonly>
+                                            <div class="notice">郵便番号が入力されると自動で入力を行います。</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="address2">
+                                    <div class="input-area">
+                                        <span>住所2</span>
+                                        <div class="zone">
+                                            <input type="text" class="add2" id="add2" name="add2" placeholder="12-34-567 コーポライブラ103" maxlength="64">
+                                            <div class="caution" id="add2Caution">
+                                                <div class="add2RgxError"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="buttonsForEdit">
+                        <button type="button" class="deleteButton" id="deleteButton">削除</button>
+                        <div class="updateAndBack">
+                            <button type="button" class="registerButton" id="registerButton">登録</button>
+                            <button type="button" class="backButton" th:onclick="|gotoward('__${previousPageUrl}__')|">戻る</button>
+                        </div>
+                    </div>
+                    <input type="hidden" id="userNum" name="userNum" th:value="${userNum}">
+                    <input type="hidden" id="destination" name="destination">
+                    <input type="hidden" id="thisPageUrl" name="previousPageUrl">
+                    <input type="hidden" id="afterLoginDestination" name="afterLoginDestination" th:value="${afterLoginDestination}">
+                    <input type="hidden" class="p-country-name" value="Japan">
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

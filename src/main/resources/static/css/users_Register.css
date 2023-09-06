@@ -1,0 +1,154 @@
+ul{
+    list-style: none;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+main > *{
+    width: 50%;
+}
+
+.main-all{
+    display: flex;
+    justify-content: center;
+}
+
+.title{
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+div.title h1{
+    text-align: center;
+    min-width: 224px;
+}
+
+form{
+    margin-top: 40px;
+    font-size: clamp(18px,2vw,20px);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+ul{
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+li{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: center;
+    margin-top: 20px;
+}
+
+li > *{
+    width: 100%;
+}
+
+.zone{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    max-width: 350px;
+}
+
+div.input-area{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.input-area > span{
+    display: inline-block;
+    width: 15%;
+    min-width: 100px;
+    box-sizing: border-box;
+}
+
+input[type=text]{
+    height: 40px;
+    width: 70%;
+    min-width: 300px;
+    max-width: 500px;
+    border: 5px solid rgb(90, 90, 90);
+    border-radius: 10px;
+    font-size: 100%;
+    font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, .5);
+}
+
+input[type=text]:focus{
+    box-shadow: none;
+    transition: 0.4s;
+}
+
+input.add1{
+    box-shadow: none;
+}
+
+input.postCode{
+    width: 65%;
+    min-width: 150px;
+    user-select: none;
+}
+
+.notice, .caution{
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+div.caution{
+    color: crimson;
+    height: 42px;
+}
+
+.caution > div,.notice{
+    min-width: 230px;
+}
+
+.buttons{
+    width: 90%;
+    height: 100px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: end;
+    display: none;
+}
+.buttons button,.buttonsForEdit button{
+    margin-right: 10px;
+}
+
+.buttonsForEdit{
+    width: 90%;
+    height: 100px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.updateAndBack{
+    display: flex;
+    justify-content: end;
+}
+
+/* main *{
+    pointer-events: none;
+    user-select: none;
+} */

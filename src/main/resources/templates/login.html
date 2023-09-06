@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/login.css}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<script th:src="@{/js/common.js}"></script>
+	<script th:src="@{/js/promisedAjax.js}"></script>
+	<script th:src="@{/js/regExs.js}"></script>
+	<script th:src="@{/js/errStrings.js}"></script>
+	<script th:src="@{/js/login.js}"></script>
+	<title>ログイン</title>
+</head>
+
+<body>
+	<header>
+		<img class="headerLogo" th:src="@{/images/図1.svg}" alt="logo">
+		<div class="menu">
+			<a class="search-link">書籍検索</a>
+			<a class="users-link">利用者メニュー</a>
+			<a class="rent-link">貸出・返却</a>
+		</div>
+	</header>
+	<main style="overflow: hidden;">
+		<div class="main-all" style="box-sizing: border-box;">
+			<div class="main-sc">
+				<div class="title">
+					<h1>ログイン</h1>
+				</div>
+				<form action="###" method="post" name="form">
+					<div class="mainContent">
+						<div class="inputTitle">図書カード番号</div>
+						<div class="inputHolder">
+							<input type="text" class="userNum" id="userNum" name="userNum" maxlength=8 placeholder="10012345">
+							<div class="caution" id="postCodeCaution">
+								<div class="userNumRgxError" style="text-align: center;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="buttons">
+						<button type="button" class="loginButton">ログイン</button>
+						<button type="button" class="backButton" th:onclick="|gotoward('__${previousPageUrl}__')|">戻る</button>
+					</div>
+					<input type="hidden" id="destination" name="destination">
+					<input type="hidden" id="thisPageUrl" name="previousPageUrl" value="login">
+					<input type="hidden" id="afterLoginDestination" name="afterLoginDestination" th:value="${afterLoginDestination}">
+					<input type="hidden" id="usersProcess" name="usersProcess" value="usersEdit">
+				</form>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,285 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+
+main{
+    justify-content: center;
+}
+
+.main-sc{
+    max-width: 1300px;
+}
+
+/* 入力項目とボタンの箱 */
+.main1{
+    margin-top: 30px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+input[type=text]{
+/*    width: 70%;*/
+    min-width: 150px;
+	width: 100%;
+}
+
+/* 入力項目の欄 */
+.inputForm{
+    width: 75%;
+}
+
+.inputTextHolder{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.inputAndCautionHolder{
+	width: 70%;
+	min-width: 150px;
+}
+
+.caution{
+	font-size: clamp(12px,1.2vw,14px);
+	color: red;
+}
+
+/* 詳細検索押下部 */
+.detailConditions{
+    margin-top: 30px;
+    font-size: clamp(14px,1.3vw,20px);
+
+}
+
+/* 詳細検索欄 */
+.additionalInput{
+    margin-top: 10px;
+    font-size: clamp(12px,1vw,20px);
+    visibility:hidden;
+    height: 0;
+}
+
+.additionalInput > .inputTextHolder{
+    font-size: clamp(20px,2vw,25px);
+}
+
+.detailInputConditions{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.genreAndPrioriSort{
+    width: 60%;
+}
+
+.sorts{
+    width: 30%;
+}
+
+.genre,.prioriSort,.bookNameSort,.authorNameSort{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.prioriSortRadioHolder,.bookNameSortRadioHolder,.authorNameSortRadioHolder{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    min-width: 90px;
+}
+
+.prioriSortRadioHolder{
+    width: 40%;
+}
+
+.genre > select{
+    width: 40%;
+    min-width: 90px;
+}
+
+.prioriSort,.authorNameSort{
+    margin-top: 10px;
+}
+
+.prioriBookName,.prioriAuthorName,.bookNameSortASC,.bookNameSortDESC,.authorNameSortASC,.authorNameSortDESC{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bookNameSortASC,.bookNameSortDESC,.authorNameSortASC,.authorNameSortDESC{
+    min-width: 28px;
+}
+
+/* ボタンの欄 */
+.buttons{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 20%;
+    min-width: 100px;
+}
+
+.buttons > button{
+    margin:0;
+}
+
+/* 検索結果表示欄 */
+.main2{
+    margin-top: 30px;
+    display: none;
+}
+
+.searchResultHolder{
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 500px;
+    margin-bottom: 10px;
+}
+
+table{
+    width: 100%;
+    min-width: 475px;
+    table-layout: fixed;
+    border-spacing: 5px 0px;
+    font-size: clamp(12px,1.2vw,18px);
+}
+
+th{
+    min-width: 81px;
+}
+
+.thBookName{
+    width: 20%;
+}
+
+.thAuthorName{
+    width: 20%;
+}
+
+.thGenre{
+    width: 20%;
+}
+
+.thBookPlace{
+    width: 20%;
+}
+
+.thAvailableBooksCount span{
+    display: inline-block;
+}
+
+.searchResultShowingTable first-child-tr{
+    position: sticky;
+    top: 0;
+    background-color: whitesmoke;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+th{
+    position: sticky;
+    top: 0;
+    background-color: whitesmoke;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+td{
+    padding-top: 25px;
+    text-align: center;
+}
+
+.noneResultNotification{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    color: crimson;
+    margin-top: 70px;
+    display: none;
+}
+
+.noMoreResultCaution{
+	text-align: center;
+	font-size: clamp(14px,1.5vw,23px);
+}
+
+.open{
+    animation: open .2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes open{
+    0%{
+        transform: translateY(-10%);
+        opacity: 0%;
+    }
+    20%{
+        opacity: 20%;
+        height: 90%;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 100%;
+        visibility: visible;
+        height:unset;
+    }
+}
+
+.close{
+    animation: close .2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes close{
+    0%{
+        transform: translateY(0);
+        opacity: 100%;
+        visibility: visible;
+    }
+    100%{
+        transform: translateY(-10%);
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .main1{
+        width: 100%;
+    }
+    
+    .inputForm{
+        width: 100%;
+    }
+
+    .buttons{
+        width: 100%;
+        flex-direction: unset;
+        justify-content: end;
+    }
+
+    .buttons button{
+        margin-right: 10px;
+    }
+
+    .searchResultHolder{
+        overflow-x: scroll;
+        justify-content: start;
+    }
+}

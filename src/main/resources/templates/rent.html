@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/rent.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<!--ここから共通部分のjsファイル-->
+	<script th:src="@{/js/common.js}"></script>
+	<script th:src="@{/js/promisedAjax.js}"></script>
+	<script th:src="@{/js/regExs.js}"></script>
+	<script th:src="@{/js/errStrings.js}"></script>
+	
+	<!--ここから貸出のjsファイル-->
+	<script th:src="@{/js/rent.js}"></script>
+	
+    <title>LibSys</title>
+</head>
+<body>
+    <header>
+        <img class="headerLogo" th:src="@{/images/図1.svg}" alt="logo">
+        <div class="menu">
+            <a class="search-link">書籍検索</a>
+            <a class="users-link">利用者メニュー</a>
+            <a class="rent-link">貸出・返却</a>
+        </div>
+    </header>
+    <main style="overflow: hidden;">
+        <div class="main-all" style="box-sizing: border-box;">
+            <div class="main-sc">
+                <div class="title">
+                    <h1>貸出</h1>
+                </div>
+                <form action="###" method="post" name="form">
+                    <div class="main1">
+                        <div class="userStatus">
+                            <div class="userNumContainer">
+                                <div class="userNumTitle">
+                                    図書カード番号：
+                                </div>
+                                <div class="contentValue" id="userNumHolder">
+                                </div>
+                            </div>
+                            <div class="userNameContainer">
+                                <div class="userNameTitle">
+                                    氏名：
+                                </div>
+                                <div class="contentValue" id="userName">
+                                </div>
+                            </div>
+                            <div class="userRentingCountContainer">
+                                <div class="userRentingCountTitle">
+                                    貸出可能な書籍数：
+                                </div>
+                                <div class="contentValue" id="availableRentCount">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="main2">
+                        <div class="bookNumHolder">
+                            <div class="bookNumTitle">書籍番号</div>
+                                <div class="inputContainer">
+                                    <input type="text" class="bookNum" name="bookNum" id="bookNum" placeholder="01234" maxlength="5">
+                                    <div class="hiphen">-</div>
+                                    <input type="text" class="bookBranchNum" id="bookBranchNum" placeholder="012" maxlength="3">
+                                </div>
+                                <button type="button" class="addButton">追加</button>
+                            </div>
+                        </div>
+                        <div class="addCaution caution">
+							<div class="bookNumRegexErr"></div>
+							<div class="bookBranchNumRegexErr"></div>
+							<div class="invalidBookAddedErr"></div>
+							<div class="addTwiceErr"></div>
+							<div class="addedBooksReachLimitErr"></div>
+						</div>
+                    </div>
+
+                    <div class="main3">
+                        <table class="addedBooks">
+                            <tr class="compTitle">
+                                <th class="thBookNum" id="thBookNum">書籍番号</th>
+                                <th class="thBookBranchNum" id="thBookBranchNum">枝番</th>
+                                <th class="thBookName" id="thBookName">書籍名</th>
+                                <th class="thDeleteButtonArea" id="thDeleteButtonArea"></th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="main4">
+                        <button type="button" class="rentButton">貸出</button>
+                        <button type="button" class="backButton" onclick="gotoward('return-extension')">戻る</button>
+                    </div>
+                    <input type="hidden" id="userNum" name="userNum" th:value="${userNum}">
+                    <input type="hidden" id="destination" name="destination">
+                    <input type="hidden" id="thisPageUrl" name="previousPageUrl" value="login">
+                    <input type="hidden" id="afterLoginDestination" th:value="${afterLoginDestination}"><input type="hidden" id="afterLoginDestination" name="afterLoginDestination" th:value="${afterLoginDestination}">
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

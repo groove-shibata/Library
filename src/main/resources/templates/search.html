@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" th:href="@{/css/header.css}">
+	<link rel="stylesheet" th:href="@{/css/search.css}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	<!--ここから共通部分のjsファイル-->
+	<script th:src="@{/js/common.js}"></script>
+	<script th:src="@{/js/promisedAjax.js}"></script>
+	<script th:src="@{/js/regExs.js}"></script>
+	<script th:src="@{/js/errStrings.js}"></script>
+	
+	<!--ここから貸出のjsファイル-->
+	<script th:src="@{/js/search.js}"></script>
+	<title>LibSys</title>
+</head>
+
+<body>
+	<header>
+		<img class="headerLogo" th:src="@{/images/図1.svg}" alt="logo">
+		<div class="menu">
+			<a class="search-link">書籍検索</a>
+			<a class="users-link">利用者メニュー</a>
+			<a class="rent-link">貸出・返却</a>
+		</div>
+	</header>
+	<main>
+		<div class="main-all" style="box-sizing: border-box;">
+			<div class="main-sc">
+				<div class="title">
+					<h1>検索</h1>
+				</div>
+				<form action="###" method="post" name="form">
+					<!-- 検索欄 -->
+					<div class="main1">
+						<div class="inputForm">
+							<div class="basicInput">
+								<div class="inputTextHolder">
+									<div class="bookNameInputTitle">書籍名</div>
+									<div  class="inputAndCautionHolder">
+										<input type="text" name="bookName" id="bookName" class="bookName">
+										<div class="bookNameRegexErr caution"></div>
+									</div>
+								</div>
+							</div>
+							<div class="detailConditions">
+								<a href="###" id="detailConditionA" class="detailConditionA"><span class="triangle"
+										style="display: inline-block; transform: rotate(0deg);">▶</span> 詳細検索</a>
+							</div>
+							<div class="additionalInput">
+								<div class="inputTextHolder">
+									<div class="authorNameInputTitle">著者名</div>
+									<div class="inputAndCautionHolder">
+										<input type="text" name="authorName" id="authorName" class="authorName">
+										<div class="authorNameRegexErr caution"></div>
+									</div>
+								</div>
+								<div class="detailInputConditions">
+									<div class="genreAndPrioriSort">
+										<div class="genre">
+											<div class="genreTitle">ジャンル</div>
+											<select name="genreNum" id="genreNum" class="genre">
+												<option value="">未選択</option>
+											</select>
+										</div>
+										<div class="prioriSort">
+											<div class="prioriSortTitle">優先するソート</div>
+											<div class="prioriSortRadioHolder">
+												<div class="prioriBookName">
+													<div class="prioriBookNameTitle">書籍名</div>
+													<input type="radio" name="prioriSort" id="prioriRadioBookName"
+														value="0" checked>
+												</div>
+												<div class="prioriAuthorName">
+													<div class="prioriAuthorNameTitle">著者名</div>
+													<input type="radio" name="prioriSort" id="prioriAuthorName"
+														value="1">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="sorts">
+										<div class="bookNameSort">
+											<div class="bookNameSortTitle">書籍名</div>
+											<div class="bookNameSortRadioHolder">
+												<div class="bookNameSortASC">
+													<div class="bookNameSortASCTitle">昇順</div>
+													<input type="radio" name="bookNameSort" id="bookNameSortRadioASC"
+														value="0" checked>
+												</div>
+												<div class="bookNameSortDESC">
+													<div class="bookNameSortDESCTitle">降順</div>
+													<input type="radio" name="bookNameSort" id="bookNameSortDESC"
+														value="1">
+												</div>
+											</div>
+										</div>
+										<div class="authorNameSort">
+											<div class="authorNameSortTitle">著者名</div>
+											<div class="authorNameSortRadioHolder">
+												<div class="authorNameSortASC">
+													<div class="authorNameSortASCTitle">昇順</div>
+													<input type="radio" name="authorNameSort"
+														id="authorNameSortRadioASC" value="0" checked>
+												</div>
+												<div class="authorNameSortDESC">
+													<div class="authorNameSortDESCTitle">降順</div>
+													<input type="radio" name="authorNameSort" id="authorNameSortDESC"
+														value="1">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="buttons">
+							<button type="button" class="searchButton">検索</button>
+							<button type="button" class="backButton" onclick="gotoward('TotalTerminal')">戻る</button>
+						</div>
+					</div>
+					<!-- 検索結果欄 -->
+					<div class="main2">
+						<div class="searchResultTitle">検索結果</div>
+						<div class="searchResultHolder">
+						</div>
+						<div class="noMoreResultCaution"></div>
+					</div>
+					<input type="hidden" id="destination" name="destination">
+					<input type="hidden" id="thisPageUrl" name="previousPageUrl" value="search">
+					<input type="hidden" id="afterLoginDestination" name="afterLoginDestination"
+						th:value="${afterLoginDestination}">
+				</form>
+			</div>
+		</div>
+		</div>
+	</main>
+	<script>
+		//詳細検索欄の表示状態を変更します。
+		$(function () {
+			$('.main-sc').css('margin-bottom', '150px');
+
+			var detailConditionsDispFlg = false;
+			$('.detailConditionA').click(() => {
+				if (detailConditionsDispFlg === true) {
+					$('.triangle').css({
+						transition: 'transform 0.2s',
+						transform: 'rotate(0deg)'
+					});
+					$('.additionalInput').addClass('close');
+					$('.additionalInput').removeClass('open');
+					detailConditionsDispFlg = false;
+				} else {
+					$('.triangle').css({
+						transition: 'transform 0.2s',
+						transform: 'rotate(90deg)'
+					});
+					$('.additionalInput').addClass('open');
+					$('.additionalInput').removeClass('close');
+					detailConditionsDispFlg = true;
+				}
+			})
+		});
+	</script>
+</body>
+
+</html>

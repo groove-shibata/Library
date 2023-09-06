@@ -1,0 +1,156 @@
+.main-all{
+    max-width: 1000px;
+}
+
+/* ユーザーのステータス */
+.main1 {
+    display: flex;
+    justify-content: end;
+}
+
+/* ユーザー情報欄 */
+.userStatus {
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.userStatus>div {
+    display: flex;
+    justify-content: end;
+}
+
+.contentValue {
+    min-width: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: end;
+}
+
+/* 書籍番号入力フォーム */
+.main2 {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.bookNumHolder {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.bookNumTitle {
+    width: 100px;
+    min-width: 80px;
+}
+
+.inputContainer {
+    width: 60%;
+    min-width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+input.bookNum {
+    width: 50%;
+    min-width: 100px;
+    text-align: center;
+}
+
+input.bookBranchNum {
+    width: 30%;
+    min-width: 100px;
+    text-align: center;
+}
+
+.hiphen {
+    display: flex;
+    align-items: center;
+}
+
+.addCaution {
+    margin-top: 10px;
+    color: crimson;
+    font-size: clamp(12px,1.3vw,23px);
+    min-height: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 追加書籍のテーブルの箱 */
+.main3 {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 450px;
+    min-height: 450px;
+    background-color: whitesmoke;
+}
+
+.addedBooks {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 10px 0px;
+    background-color: whitesmoke;
+    font-size: clamp(12px, 1.2vw, 18px);
+
+}
+
+.bookNum {
+    width: 20%;
+}
+
+.bookBranchNum {
+    width: 20%;
+}
+
+
+.deleteButtonArea {
+    width: 20%;
+    min-width: 100px;
+}
+
+th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: whitesmoke;
+    position: sticky;
+    top: 0;
+}
+
+td {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.addedBooks button {
+    font-size: clamp(12px, 1.2vw, 18px);
+    width: 50%;
+    min-width: 50px;
+}
+
+/* 貸出ボタンと戻るボタン */
+.main4 {
+    width: 100%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 50px;
+}
+
+.main4>button {
+    margin-right: 10px;
+}
